@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #eef2f5;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,19 +19,28 @@
             width: 420px;
             padding: 25px 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+            border-top: 6px solid #007bff;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
-            color: #222;
+            color: #007bff;
+            font-size: 28px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
         p {
             font-size: 15px;
             margin: 8px 0;
-            color: #444;
+            color: #333;
         }
 
         .survived {
@@ -64,10 +73,12 @@
             text-decoration: none;
             border-radius: 8px;
             font-size: 15px;
+            transition: 0.3s;
         }
 
         .back-btn:hover {
             background: #0056c7;
+            transform: scale(1.03);
         }
     </style>
 </head>
@@ -85,14 +96,12 @@
     <p><strong>Embarked:</strong> {{ Embarked }}</p>
     <p><strong>Age Group:</strong> {{ Age_Group }}</p>
 
-    {% if prediction == 1 %}
-        <div class="survived">The passenger is predicted to have survived.</div>
+    {% if prediction == 1}
+    <div class="survived">The passenger is predicted to have SURVIVED.</div>
     {% else %}
-        <div class="not-survived">The passenger is predicted to have not survived.</div>
+    <div class="not-survived">The passenger is predicted to have NOT SURVIVED.</div>
     {% endif %}
-
-    <a href="/" class="back-btn">Go Back</a>
+    <a href="{{ url_for('index') }}" class="back-btn">Back to Form</a>
 </div>
-
 </body>
 </html>
