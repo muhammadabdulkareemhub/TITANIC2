@@ -1,0 +1,35 @@
+<form action="{{ url_for('submit') }}" method="post">
+    <label for="Pclass">Passenger Class:</label>
+<select name="Pclass"required>
+    <option value="" selected>Optional</option>
+    <option value="1">1 (First Class)</option>
+    <option value="2">2 (Second Class)</option>
+    <option value="3">3 (Third Class)</option></select><br><br>
+
+
+
+    <label for="Sex">Sex:</label>
+<select name="Sex" required>
+    <option value="male">Male</option>
+    <option value="female">Female</option></select><br><br>
+
+
+    <label for="Age">Age:</label>
+    <input type="number"  name="Age" required><br><br>
+
+    <label for="SibSp">Siblings/Spouses Aboard:</label>
+    <input type="number"  name="SibSp" required><br><br>
+
+    <label for="Parch">Parents/Children Aboard:</label>
+    <input type="number"  name="Parch" required><br><br>
+
+    <label for="Fare">Fare:</label>
+    <input type="number"  name="Fare" required><br><br>
+
+    <label for="Embarked">Embarked:</label>
+    <input type="number"  name="Embarked" required><br><br>
+
+    <label for="Age Group">Age Group:</label>
+    <input type="number"  name="Age Group" required><br><br>
+    <input type="submit" value="Submit">
+</form>
