@@ -14,7 +14,7 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    try:
+    if request.method == 'POST':
         # Collect form values
         Pclass = request.form.get("Pclass")
         Sex = request.form.get("Sex")
@@ -23,32 +23,4 @@ def submit():
         Parch = float(request.form.get("Parch"))
         Fare = float(request.form.get("Fare"))
         Embarked = float(request.form.get("Embarked"))
-        Age_Group = float(request.form.get("AgeGroup"))   # FIXED name
-
-        # Encode Pclass
-        if Pclass == "1":
-            Pclass = 0
-        elif Pclass == "2":
-            Pclass = 1
-        else:
-            Pclass = 2
-
-        # Encode Sex
-        Sex = 1 if Sex == "male" else 0
-
-        # Build feature array
-        features = np.array([[Pclass, Sex, Age, SibSp, Parch, Fare, Embarked, Age_Group]])
-
-        # Model prediction
-        prediction = model.predict(features)[0]
-
-        # Convert prediction to True/False for HTML
-        survived = True if prediction == 1 else False
-
-        return render_template("index.html", survived=survived)
-
-    except Exception as e:
-        return f"Error: {str(e)}"
-
-if __name__ == '__main__':
-    app.run(debug=True)
+        Age_Group = float(request.form.get("AgeGroup"))   # Correct field name

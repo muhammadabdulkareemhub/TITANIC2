@@ -1,84 +1,92 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Submission Result</title>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            color: #333;
         }
 
         .result-card {
-            background: white;
-            width: 420px;
-            padding: 25px 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-            border-top: 6px solid #007bff;
-            animation: fadeIn 0.6s ease;
+            background: #ffffff;
+            width: 450px;
+            padding: 30px 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            border-top: 7px solid #6c63ff;
+            animation: fadeIn 0.7s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
-            color: #007bff;
-            font-size: 28px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            margin-bottom: 25px;
+            color: #6c63ff;
+            font-size: 30px;
+            font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
         }
 
         p {
-            font-size: 15px;
-            margin: 8px 0;
-            color: #333;
+            font-size: 16px;
+            margin: 10px 0;
+            color: #444;
         }
 
         .survived {
-            background: #d4edda;
-            color: #155724;
-            padding: 12px;
+            background: #d1ffd6;
+            color: #0a8a2a;
+            padding: 15px;
             text-align: center;
-            margin-top: 20px;
-            border-radius: 8px;
+            margin-top: 25px;
+            border-radius: 10px;
             font-weight: bold;
+            font-size: 17px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.12);
         }
 
         .not-survived {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px;
+            background: #ffd6d6;
+            color: #b00020;
+            padding: 15px;
             text-align: center;
-            margin-top: 20px;
-            border-radius: 8px;
+            margin-top: 25px;
+            border-radius: 10px;
             font-weight: bold;
+            font-size: 17px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.12);
         }
 
         .back-btn {
             display: block;
             text-align: center;
-            margin-top: 20px;
-            padding: 12px;
-            background: #007bff;
+            margin-top: 25px;
+            padding: 13px;
+            background: #6c63ff;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 15px;
+            border-radius: 10px;
+            font-size: 16px;
             transition: 0.3s;
+            font-weight: 600;
         }
 
         .back-btn:hover {
-            background: #0056c7;
-            transform: scale(1.03);
+            background: #5848d6;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -87,7 +95,7 @@
 <div class="result-card">
     <h1>Submission Result</h1>
 
-    <p><strong>Pclass:</strong> {{ Pclass }}</p>
+    <p><strong>Passenger Class:</strong> {{ Pclass }}</p>
     <p><strong>Sex:</strong> {{ Sex }}</p>
     <p><strong>Age:</strong> {{ Age }}</p>
     <p><strong>Siblings/Spouses Aboard:</strong> {{ SibSp }}</p>
@@ -96,12 +104,18 @@
     <p><strong>Embarked:</strong> {{ Embarked }}</p>
     <p><strong>Age Group:</strong> {{ Age_Group }}</p>
 
-    {% if prediction == 1}
-    <div class="survived">The passenger is predicted to have SURVIVED.</div>
+    {% if prediction == 1 %}
+        <div class="survived">
+            The passenger is predicted to have SURVIVED.
+        </div>
     {% else %}
-    <div class="not-survived">The passenger is predicted to have NOT SURVIVED.</div>
+        <div class="not-survived">
+            The passenger is predicted to have NOT SURVIVED.
+        </div>
     {% endif %}
+
     <a href="{{ url_for('index') }}" class="back-btn">Back to Form</a>
 </div>
+
 </body>
 </html>
