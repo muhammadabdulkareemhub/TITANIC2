@@ -1,11 +1,9 @@
-<form action="{{ url_for('submit') }}" method="post"></form>
-<htmtl lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<form action="{{ url_for('submit') }}" method="post">
-    <meta charset="UTF-8"> 
-
-
+    <meta charset="UTF-8">
     <title>Titanic Form</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -80,6 +78,7 @@
         }
     </style>
 </head>
+
 <body>
 
 <h1>Titanic Survival Predictor</h1>
@@ -87,14 +86,15 @@
 <div class="form-container">
     <h2>Enter Passenger Details</h2>
 
+    <!-- MAIN FORM -->
     <form action="{{ url_for('submit') }}" method="post">
-        
+
         <label>Passenger Class:</label>
         <select name="Pclass" required>
             <option value="" selected>Optional</option>
-            <option value="1"> (First Class)</option>
-            <option value="2"> (Second Class)</option>
-            <option value="3"> (Third Class)</option>
+            <option value="1">First Class</option>
+            <option value="2">Second Class</option>
+            <option value="3">Third Class</option>
         </select>
 
         <label>Sex:</label>
@@ -119,20 +119,27 @@
         <input type="number" name="Embarked" required>
 
         <label>Age Group:</label>
-        <input type="number" name="Age Group" required>
+        <input type="number" name="AgeGroup" required>
 
         <input type="submit" value="Submit">
-    </div>
+
     </form>
+
     {% if survived %}
-    <h2 style="color: green; text-align: center; margin-top: 15px;">The passenger is predicted to have SURVIVED.</h2>
+        <h2 style="color: green; text-align: center; margin-top: 15px;">
+            The passenger is predicted to have SURVIVED.
+        </h2>
     {% elif survived is not none %}
-    <h2 style="color: red; text-align: center; margin-top: 15px;">The passenger is predicted to have NOT SURVIVED.</h2>
+        <h2 style="color: red; text-align: center; margin-top: 15px;">
+            The passenger is predicted to have NOT SURVIVED.
+        </h2>
     {% endif %}
 
-    <a href="{{ url_for('index') }}" style="display: block; text-align: center; margin-top: 20px; color: #007bff; text-decoration: none;">Back to Form</a>
-</div> 
-   
+    <a href="{{ url_for('index') }}" 
+       style="display: block; text-align: center; margin-top: 20px; color: #007bff; text-decoration: none;">
+       Back to Form
+    </a>
+</div>
+
 </body>
 </html>
-
