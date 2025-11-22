@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("index.html", survived=None)
+    return render_template("index.html", survived=None, Age_Group=None)
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -23,7 +23,6 @@ def submit():
         Parch = float(request.form.get("Parch"))
         Fare = float(request.form.get("Fare"))
         Embarked = float(request.form.get("Embarked"))
-        Age_Group = float(request.form.get("AgeGroup"))
 
         # Encode Pclass
         if Pclass == "1":
@@ -36,13 +35,25 @@ def submit():
         # Encode Sex
         Sex_encoded = 1 if Sex == "male" else 0
 
-        # Prepare features for model
-        features = np.array([[Pclass_encoded, Sex_encoded, Age, SibSp, Parch, Fare, Embarked, Age_Group]])
+        # AUTO CALCULATED AGE GROUP
+        if Age <= 12:
+            Age_Group = 0   # Child
+        elif Age <= 19:
+            Age_Group = 1   # Teen
+        elif Age <= 39:
+            Age_Group = 2   # Adult
+        elif Age <= 59:
+            Age_Group = 3   # Middle-aged
+        else:
+            Age_Group = 4   # Senior
 
-        # Prediction
+        # Features to model
+        features = np.array([[Pclass_encoded, Sex_encoded, Age, SibSp, Parch, 
+                              Fare, Embarked, Age_Group]])
+
+        # Predict
         prediction = model.predict(features)[0]
 
-        # Render result page with all values
         return render_template(
             "result.html",
             Pclass=Pclass,
@@ -59,5 +70,5 @@ def submit():
     except Exception as e:
         return f"Error: {str(e)}"
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

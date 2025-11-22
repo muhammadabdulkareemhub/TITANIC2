@@ -102,7 +102,18 @@
     <p><strong>Parents/Children Aboard:</strong> {{ Parch }}</p>
     <p><strong>Fare:</strong> {{ Fare }}</p>
     <p><strong>Embarked:</strong> {{ Embarked }}</p>
-    <p><strong>Age Group:</strong> {{ Age_Group }}</p>
+    {% if Age_Group == 0 %}
+    <p><strong>Age Group:</strong> Child (0–12)</p>
+{% elif Age_Group == 1 %}
+    <p><strong>Age Group:</strong> Teen (13–19)</p>
+{% elif Age_Group == 2 %}
+    <p><strong>Age Group:</strong> Adult (20–39)</p>
+{% elif Age_Group == 3 %}
+    <p><strong>Age Group:</strong> Middle-aged (40–59)</p>
+{% else %}
+    <p><strong>Age Group:</strong> Senior (60+)</p>
+{% endif %}
+
 
     {% if prediction == 1 %}
         <div class="survived">
